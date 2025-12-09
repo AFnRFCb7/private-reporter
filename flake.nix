@@ -44,7 +44,7 @@
                                                                                         MESSAGE="$*"
                                                                                         UUID="$( uuidgen )" || failure 5fa834fd
                                                                                         BRANCH="$( echo "issue/$UUID" | cut --characters 1-64 )" || failure 5deab959
-                                                                                        PRIVATE=${ private ( setup : ''${ setup } $BRANCH" "$MESSAGE"'' ) }
+                                                                                        PRIVATE=${ private ( setup : ''${ setup } "$BRANCH" "$MESSAGE"'' ) }
                                                                                         export PRIVATE
                                                                                     '' ;
                                                                     }
