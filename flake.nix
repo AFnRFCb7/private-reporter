@@ -20,7 +20,7 @@
                                         application =
                                             pkgs.writeShellApplication
                                                 {
-                                                    name = "private" ;
+                                                    name = "private-reporter" ;
                                                     runtimeInputs =
                                                         [
                                                             pkgs.redis
