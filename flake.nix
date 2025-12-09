@@ -44,7 +44,7 @@
                                                                                         MESSAGE="$*"
                                                                                         UUID="$( uuidgen )" || failure 5fa834fd
                                                                                         BRANCH="$( echo "issue/$UUID" | cut --characters 1-64 )" || failure 5deab959
-                                                                                        PRIVATE=${ private ( setup : ''${ setup } "$BRANCH" "$MESSAGE"'' ) }
+                                                                                        PRIVATE=${ private }
                                                                                         git -C "$PRIVATE" checkout -b "$BRANCH"
                                                                                         git -C "$PRIVATE" -am "$MESSAGE" --alllow-empty --allow-empty-message
                                                                                         git -C "$PRIVATE" push origin HEAD
@@ -78,14 +78,14 @@
                                                             done
                                                         '' ;
                                                 } ;
-                                        in "${ application }/bin/resource-reporter" ;
+                                        in "${ application }/bin/private-reporter" ;
                             in
                                 {
                                     check =
                                         {
                                             channel ? "07469d75" ,
                                             expected ? "f11ad4e3" ,
-                                            private ? ( setup : "32b93ceb" ) ,
+                                            private ? "32b93ceb" ,
                                             resolution ? "b25f40b3"
                                         } :
                                             pkgs.stdenv.mkDerivation
