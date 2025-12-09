@@ -46,6 +46,8 @@
                                                                                         BRANCH="$( echo "issue/$UUID" | cut --characters 1-64 )" || failure 5deab959
                                                                                         PRIVATE=${ private ( setup : ''${ setup } "$BRANCH" "$MESSAGE"'' ) }
                                                                                         git -C "$PRIVATE" checkout -b "$BRANCH"
+                                                                                        git -C "$PRIVATE" -am "$MESSAGE" --alllow-empty --allow-empty-message
+                                                                                        git -C "$PRIVATE" push origin HEAD
                                                                                     '' ;
                                                                     }
                                                             )
