@@ -98,6 +98,7 @@
                                                                                 implementation
                                                                                     {
                                                                                         channel = channel ;
+                                                                                        private = private ;
                                                                                         resolution = resolution ;
                                                                                     }
                                                                             ) ;
