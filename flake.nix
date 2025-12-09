@@ -26,7 +26,31 @@
                                                             pkgs.redis
                                                             pkgs.yq-go
                                                             failure
-
+                                                            (
+                                                                pkgs.writeShellApplication
+                                                                    {
+                                                                        name = "iteration" ;
+                                                                        runtimeInputs =
+                                                                            [
+                                                                                pkgs.coreutils
+                                                                                pkgs.git
+                                                                                pkgs.libuuid
+                                                                                failure
+                                                                            ] ;
+                                                                        text =
+                                                                            let
+                                                                                in
+                                                                                    ''
+                                                                                        MESSAGE="$*"
+                                                                                        UUID="$( uuidgen )" || failure 5fa834fd
+                                                                                        BRANCH="$( echo "issue/$UUID" | cut --characters 1-64 )" || failure 5deab959
+                                                                                        PRIVATE=${ private }
+                                                                                        git -C "$PRIVATE" checkout -b "$BRANCH"
+                                                                                        git -C "$PRIVATE" -am "$MESSAGE" --alllow-empty --allow-empty-message
+                                                                                        git -C "$PRIVATE" push origin HEAD
+                                                                                    '' ;
+                                                                    }
+                                                            )
                                                         ] ;
                                                     text =
                                                         ''
